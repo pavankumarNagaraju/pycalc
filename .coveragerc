@@ -1,0 +1,9 @@
+[run]
+omit =
+    tests/*
+    */site-packages/*
+    .venv/*
+
+[report]
+show_missing = True
+precision = 2

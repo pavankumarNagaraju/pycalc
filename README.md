@@ -8,3 +8,6 @@ pytest
 python -m pycalc
 
 CI: trigger run
+
+![CI](https://github.com/pavankumarNagaraju/pycalc/actions/workflows/ci.yml/badge.svg)
+

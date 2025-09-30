@@ -3,7 +3,7 @@ from .exceptions import CalculatorError
 
 HELP = """
 Welcome to the CLI Calculator!
-Operations: add, sub, mul, div
+Operations: add, sub, mul, div, pow
 Commands:   help, quit
 Usage:
   1) Enter an operation name.
@@ -14,7 +14,7 @@ def run_repl(input_fn=input, print_fn=print):
     print_fn("CLI Calculator. Type 'help' for instructions. Type 'quit' to exit.")
     while True:
         try:
-            op_in = input_fn("> Operation [add|sub|mul|div|help|quit]: ").strip()
+            op_in = input_fn("> Operation [add|sub|mul|div|pow|help|quit]: ").strip()
             op = parse_operation(op_in)
             if op == "help":
                 print_fn(HELP)
@@ -26,7 +26,7 @@ def run_repl(input_fn=input, print_fn=print):
             nums_in = input_fn("> Enter numbers (space separated): ")
             values = parse_numbers(nums_in)
 
-            result = op(values)  # op is a function
+            result = op(values)
             if float(result).is_integer():
                 print_fn(f"Result: {int(result)}")
             else:

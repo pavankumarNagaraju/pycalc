@@ -34,3 +34,11 @@ def div(values):
             raise CalculatorError("Division by zero is not allowed.")
         result /= v
     return result
+
+def pow(values):
+    """Exponentiate left-to-right: (((a ** b) ** c) ** d) ..."""
+    _require_at_least_two(values)
+    result = values[0]
+    for v in values[1:]:
+        result = result ** v
+    return result

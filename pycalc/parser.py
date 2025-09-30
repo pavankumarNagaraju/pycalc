@@ -6,6 +6,7 @@ DISPATCH = {
     "sub": ops.sub,
     "mul": ops.mul,
     "div": ops.div,
+    "pow": ops.pow,
 }
 
 def parse_operation(op_str: str):
@@ -16,7 +17,7 @@ def parse_operation(op_str: str):
         return DISPATCH[key]
     except KeyError as e:
         raise CalculatorError(
-            f"Unknown operation: '{op_str}'. Try: add, sub, mul, div, help, quit."
+            "Unknown operation: '{0}'. Try: add, sub, mul, div, pow, help, quit.".format(op_str)
         ) from e
 
 def parse_numbers(s: str):

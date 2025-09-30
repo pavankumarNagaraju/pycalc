@@ -4,12 +4,12 @@ class InputFeeder:
     def __init__(self, items):
         self._it = iter(items)
     def __call__(self, prompt=""):
-        # Simulate user typing each input line
         return next(self._it)
 
 def test_repl_happy_path_and_error():
     inputs = [
-        "add", "1 2",          # -> Result: 3 (int formatting)
+        "pow", "2 3",          # -> Result: 8   (left-to-right: 2**3)
+        "add", "1 2",          # -> Result: 3   (int formatting)
         "mul", "0.5 0.25",     # -> Result: 0.125 (float formatting)
         "div", "10 0",         # -> Error: Division by zero...
         "quit"                 # -> Goodbye!
@@ -20,13 +20,13 @@ def test_repl_happy_path_and_error():
 
     text = "\n".join(out)
     assert "CLI Calculator" in text
+    assert "Result: 8" in text
     assert "Result: 3" in text
     assert "Result: 0.125" in text
     assert "Error: Division by zero is not allowed." in text
     assert "Goodbye!" in text
 
 def test_repl_eof_exit():
-    # End of inputs should raise EOFError in input(), we mimic by raising it ourselves.
     def raising_input(_prompt=""):
         raise EOFError
     out = []

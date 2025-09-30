@@ -9,12 +9,13 @@ def test_parse_operation_valid():
     assert parse_operation("SUB") is ops.sub
     assert parse_operation("mul") is ops.mul
     assert parse_operation("div") is ops.div
+    assert parse_operation("pow") is ops.pow
     assert parse_operation("help") == "help"
     assert parse_operation("quit") == "quit"
 
 def test_parse_operation_invalid():
     with pytest.raises(CalculatorError):
-        parse_operation("pow")
+        parse_operation("poww")  # typo, should be invalid
 
 def test_parse_numbers_valid():
     assert parse_numbers("1 2 3") == [1.0, 2.0, 3.0]
@@ -35,6 +36,6 @@ def test_run_as_module_shows_help_and_quits():
     out, err = proc.communicate("help\nquit\n", timeout=10)
     assert proc.returncode == 0
     assert "CLI Calculator" in out
-    assert "Operations: add, sub, mul, div" in out
+    assert "Operations: add, sub, mul, div, pow" in out
     assert "Goodbye!" in out
     assert err == ""

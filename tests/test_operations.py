@@ -46,3 +46,8 @@ def test_div_by_zero_raises():
     import pytest
     with pytest.raises(CalculatorError):
         div([10, 0])
+def test_pow():
+    from pycalc.operations import pow
+    assert pow([2, 3]) == 8.0            # 2**3
+    assert pow([2, 3, 2]) == 64.0        # (2**3)**2
+    assert pow([9, 0.5]) == 3.0          # sqrt via exponent
